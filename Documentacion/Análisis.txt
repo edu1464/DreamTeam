@@ -1,0 +1,2 @@
+Primera pantalla: Configuración, y un readkey para continuar.
+Inicio: Nombre del juego, y mostrar opciones de menú: Jugar, Cómo jugar, Puntuaciones máximas, Créditos.
