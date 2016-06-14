@@ -6,7 +6,6 @@ Function OrdenarNum(str: string): string;
 Function GenNum():string;
 Function isNumber(num:Char):Boolean;
 Function DibujarNum(digit: char; fila: integer):string;
-
 Implementation
 
 Uses
@@ -74,7 +73,7 @@ Var
    flag: Boolean;
 
 Begin
-     Assign(SecNum, 'D:\Eduardo\UTN FRRe\Algoritmos\2016\Repo TPI Pascal\branches\Codigo\AsciiArtNumero.txt');
+     Assign(SecNum, 'C:\Users\USER\Desktop\Dream Team\DreamTeam\Codigo\AsciiArtNumero.txt');
      Reset(SecNum);
      sal1:= '';
      flag:= true;
@@ -100,6 +99,8 @@ Begin
      Close(SecNum);
      DibujarNum:= sal1;
 End;
+
+
 
 End.
 
