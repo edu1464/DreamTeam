@@ -74,7 +74,7 @@ Var
    flag: Boolean;
 
 Begin
-     Assign(SecNum, 'C:\Users\USER\Desktop\Dream Team\DreamTeam\Codigo\AsciiArtNumero.txt');
+     Assign(SecNum, 'D:\Eduardo\UTN FRRe\Algoritmos\2016\Repo TPI Pascal 2\Codigo\AsciiArtNumero.txt');
      Reset(SecNum);
      sal1:= '';
      flag:= true;

@@ -1,61 +1,48 @@
 Program MenuPrincipal;
 
 Uses
-    crt;
+    crt, dreamTeam, dos, sysutils;
 
 var
-   i: integer;
+   i, j: integer;
+   frase, sal: string;
 
 procedure titulo;   {Despues de configurar el juego, llamamos a este procedimiento para comenzar a jugar}
 Begin
+     frase:= 'MEMORY NUMBER';
    For i:= 1 to 2 Do
    Begin
    clrScr;
-   Writeln();
-   Writeln();
-   Writeln();
-   Writeln();
-   Writeln();
-     Writeln();
-     If i = 1 Then
-     Begin
-          Writeln('         /$$      /$$                                                        /$$   /$$                      /$$                          ');
-          Delay(400);
-          Writeln('         | $$$    /$$$                                                       | $$$ | $$                     | $$                         ');
-          Delay(400);
-          Writeln('         | $$$$  /$$$$ /$$$$$$ /$$$$$$/$$$$  /$$$$$$  /$$$$$$ /$$   /$$      | $$$$| $$/$$   /$$/$$$$$$/$$$$| $$$$$$$  /$$$$$$  /$$$$$$  ');
-          Delay(400);
-          Writeln('         | $$ $$/$$ $$/$$__  $| $$_  $$_  $$/$$__  $$/$$__  $| $$  | $$      | $$ $$ $| $$  | $| $$_  $$_  $| $$__  $$/$$__  $$/$$__  $$ ');
-          Delay(400);
-          Writeln('         | $$  $$$| $| $$$$$$$| $$ \ $$ \ $| $$  \ $| $$  \__| $$  | $$      | $$  $$$| $$  | $| $$ \ $$ \ $| $$  \ $| $$$$$$$| $$  \__/ ');
-          Delay(400);
-          Writeln('         | $$\  $ | $| $$_____| $$ | $$ | $| $$  | $| $$     | $$  | $$      | $$\  $$| $$  | $| $$ | $$ | $| $$  | $| $$_____| $$       ');
-          Delay(400);
-          Writeln('         | $$ \/  | $|  $$$$$$| $$ | $$ | $|  $$$$$$| $$     |  $$$$$$$      | $$ \  $|  $$$$$$| $$ | $$ | $| $$$$$$$|  $$$$$$| $$       ');
-          Delay(400);
-          Writeln('         |__/     |__/\_______|__/ |__/ |__/\______/|__/      \____  $$      |__/  \__/\______/|__/ |__/ |__|_______/ \_______|__/       ');
-          Delay(400);
-          Writeln('                                                              /$$  | $$                                                                  ');
-          Delay(400);
-          Writeln('                                                             |  $$$$$$/                                                                  ');
-          Delay(400);
-          Writeln('                                                              \______/                                                                   ');
-          Delay(400);
+
+   If i = 1 Then
+   Begin
+         For j:= 1 to 8 Do  {Bucle de cantidad de filas de la letra}
+         Begin
+              sal:= '';
+              For i:= 1 to length(frase) Do {Bucle cantidad de digitos del numero}
+              Begin
+                   Delay(15);
+                   sal:= sal + DibujarNum(frase[i], j);
+              End;
+              GoToXY(10,15+j);
+              Writeln(sal);
+         End;
      End
      Else
      Begin
           Delay(600);
-          Writeln('         /$$      /$$                                                        /$$   /$$                      /$$                          ');
-          Writeln('         | $$$    /$$$                                                       | $$$ | $$                     | $$                         ');
-          Writeln('         | $$$$  /$$$$ /$$$$$$ /$$$$$$/$$$$  /$$$$$$  /$$$$$$ /$$   /$$      | $$$$| $$/$$   /$$/$$$$$$/$$$$| $$$$$$$  /$$$$$$  /$$$$$$  ');
-          Writeln('         | $$ $$/$$ $$/$$__  $| $$_  $$_  $$/$$__  $$/$$__  $| $$  | $$      | $$ $$ $| $$  | $| $$_  $$_  $| $$__  $$/$$__  $$/$$__  $$ ');
-          Writeln('         | $$  $$$| $| $$$$$$$| $$ \ $$ \ $| $$  \ $| $$  \__| $$  | $$      | $$  $$$| $$  | $| $$ \ $$ \ $| $$  \ $| $$$$$$$| $$  \__/ ');
-          Writeln('         | $$\  $ | $| $$_____| $$ | $$ | $| $$  | $| $$     | $$  | $$      | $$\  $$| $$  | $| $$ | $$ | $| $$  | $| $$_____| $$       ');
-          Writeln('         | $$ \/  | $|  $$$$$$| $$ | $$ | $|  $$$$$$| $$     |  $$$$$$$      | $$ \  $|  $$$$$$| $$ | $$ | $| $$$$$$$|  $$$$$$| $$       ');
-          Writeln('         |__/     |__/\_______|__/ |__/ |__/\______/|__/      \____  $$      |__/  \__/\______/|__/ |__/ |__|_______/ \_______|__/       ');
-          Writeln('                                                              /$$  | $$                                                                  ');
-          Writeln('                                                             |  $$$$$$/                                                                  ');
-          Writeln('                                                              \______/                                                                   ');
+          ClrScr;
+          For j:= 1 to 8 Do  {Bucle de cantidad de filas de la letra}
+         Begin
+              sal:= '';
+              For i:= 1 to length(frase) Do {Bucle cantidad de digitos del numero}
+              Begin
+                   Delay(5);
+                   sal:= sal + DibujarNum(frase[i], j);
+              End;
+              GoToXY(10,15+j);
+              Writeln(sal);
+         End;
      End;
      End;
      Delay(5000);
