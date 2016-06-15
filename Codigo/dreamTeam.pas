@@ -6,6 +6,8 @@ Function OrdenarNum(str: string): string;
 Function GenNum():string;
 Function isNumber(num:Char):Boolean;
 Function DibujarNum(digit: char; fila: integer):string;
+Function NumeroDesordenado(num: string):string;
+
 Implementation
 
 Uses
@@ -69,7 +71,6 @@ Var
    sal1: string;
    row: string;
    SecNum: Text;
-   i: integer;
    flag: Boolean;
 
 Begin
@@ -98,6 +99,47 @@ Begin
      End;
      Close(SecNum);
      DibujarNum:= sal1;
+End;
+
+Function NumeroDesordenado(num: string): string;
+var
+   flag1, flag2: boolean;
+   pos: integer;
+   desorden, resgPos: string;
+   i, j: integer;
+begin
+     writeln(num);
+     desorden:= '';
+     resgPos:='000000';
+     Randomize;
+     flag1:= True;
+     j:= 1;
+     While flag1 Do
+     Begin
+          flag2:= True;
+          pos:= Random(7);
+          If pos > 0 Then
+          Begin
+               For i:= 1 to 6 Do
+               Begin
+                    If (resgPos[i] = intToStr(pos)[1]) and (flag2) Then
+                       flag2:= False;
+               End;
+
+               If flag2 Then
+               Begin
+                    resgPos[j]:=(intToStr(pos)[1]);
+                    desorden:= desorden + num[pos];
+                    j:= j+1;
+                    If j > 6 Then
+                    Begin
+                         flag1:= False;
+                    End;
+               End;
+          End;
+     End;
+     NumeroDesordenado:= num;
+
 End;
 
 
