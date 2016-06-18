@@ -1,38 +1,31 @@
 Program MenuPrincipal;
 
 Uses
-    crt  ;
+    crt, dreamTeam  ;
 
 var
-   MemoryNumber: Text;     {MemoryNumber es el texto para el titulo}
-   i,j,x,y,temp: integer;  {x y son variables para controlar la posición del cursor con gotoXY(). i y j son para ciclos For. Temp es para el delay del titulo}
-   tecla,V: char;          {tecla es para guardar el codigo de la tecla presionada, para saber que tecla se presionó. V es la ventana de MemoryNumber}
+
+   i,j,x,y: integer;  {x y son variables para controlar la posición del cursor con gotoXY(). i y j son para ciclos For.}
+   tecla: char;          {tecla es para guardar el codigo de la tecla presionada, para saber que tecla se presionó.}
    control: boolean;       {control se usa como bandera, para asegurarme de que se cambia de menu o no, si no se cambia vuelve a escribirse el menu principal}
 
 procedure titulo;     {Despues de configurar el juego, llamamos a este procedimiento para comenzar a jugar}
+var
+   frase, sal: string;
+
 Begin
-     Assign (MemoryNumber, 'c:\dev-pas\MemoryNumber.txt');
-     temp:=400;
-     For j:=1 to 2 do
-     Begin
-          clrScr;
-          Reset (MemoryNumber);
-          Read (MemoryNumber,V);
-          gotoXY (1,6);
-          For i:=1 to 11 do
+      frase:= 'MEMORY NUMBER';
+      For j:= 1 to 8 Do  {Bucle de cantidad de filas de la letra}
+      Begin
+          sal:= '';
+          For i:= 1 to length(frase) Do {Bucle cantidad de digitos del numero}
           Begin
-               While not (V='.') do
-               Begin
-                    Write (V);
-                    Read (MemoryNumber,V);
-               end;
-               Readln (MemoryNumber,V);
-               Writeln;
-               delay (temp);
-          end;
-          Close (MemoryNumber);
-          temp:=0;
-     end;
+               Delay(20);
+               sal:= sal + DibujarNum(frase[i], j) + ' ';
+          End;
+          GoToXY(5,5+j);
+          Writeln(sal);
+     End;
 end;
 
 
