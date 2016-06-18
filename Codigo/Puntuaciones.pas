@@ -21,9 +21,9 @@ Begin
      Assign (Arch, 'MemoryNumber_Puntos.txt');
 
      Reset (Arch);
-     if not (IOResult=0) then
-     Begin
-          Rewrite (Arch);
+     if not (IOResult=0) then                   {Esto es únicamente para controlar si el}
+     Begin                                       {archivo de puntuaciones ya existe, si no}
+          Rewrite (Arch);                        {crea uno nuevo con 5 puestos}
           For i:=1 to 5 do
           Begin
                Reg.puesto:= i;
@@ -32,24 +32,24 @@ Begin
                Write (Arch,Reg);
           end;
           Close (Arch);
-          Reset (Arch);
+          Reset (Arch);                          {aca termina la carga del nuevo archivo depuntuaciones}
      end;
 
-     Write ('Desea cargar nuevas puntuaciones? ( si , no ) : ');
-     Readln (opcion);
-     While opcion='si' do
+     Write ('Desea cargar nuevas puntuaciones? ( si , no ) : ');   {Esto no va en el juego, lo puse solo}
+     Readln (opcion);                                              {para poder correr el codigo y verificar}
+     While opcion='si' do                                          {si funciona}
      Begin
           Reset (Arch);
           Writeln ('------Carga de puntuaciones------');
           Write (' Ingrese nombre: ');
           Readln (name);
           Write ('   Ingrese puntos: ');
-          Readln (punt);
+          Readln (punt);                                            {Acá debería cargarlo de la variable que almacene el puntaje}
 
           While not Eof (Arch) do
           Begin
                Read (Arch,Reg);
-
+                                                                    {Hace una carga ordenada de mayor puntaje a menor}
                if (punt > Reg.puntaje) then
                Begin
                     resguardoPunt:= Reg.puntaje;
@@ -67,13 +67,13 @@ Begin
                end;
 
           end;
-          Write ('Desea seguir cargando? ( si , no ) : ');
+          Write ('Desea seguir cargando? ( si , no ) : ');                 {Esto tampoco va, es solo par probar el código separado}
           Readln (opcion);
      end;
      Close (Arch);
 
      Reset (Arch);
-     while not Eof (Arch) do
+     while not Eof (Arch) do                                                {Este ciclo muestra en pantalla todas las puntuaciones}
      Begin
           Read (Arch, Reg);
           Writeln (Reg.puesto,'. ',Reg.nombre,': ',Reg.puntaje);
