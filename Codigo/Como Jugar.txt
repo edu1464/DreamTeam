@@ -9,4 +9,5 @@ Con un maximo de 3 intentos por numero iras
 acumulando puntos si aciertas, y cada nivel
 te dara un multiplicador de puntaje.
 
-              Diviertete!
+Es un juego totalmente intuitivo. 
+              Diviertete!!
