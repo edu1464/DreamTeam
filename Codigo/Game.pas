@@ -6,10 +6,10 @@ Uses
 Var
    sal, resgPos, frase: string;
    aleat, desorden, numIngresado: string;
-   j,i, pos, vida, cont, puntaje: integer;
+   j,i, pos, vida, cont, puntaje, resgPuntaje: integer;
    flag1, flag2, salir, fin: Boolean;
    tiempo: integer;
-   nombre: string;
+   nombre, TemporVisual: string;
 
 begin
      fin:= True;
@@ -18,8 +18,19 @@ begin
      tiempo:= 5000;
      While fin Do
      Begin
-     Dibujando('Nro ' + intToStr(cont), 0, 1, 1);
-     Dibujando('Visualice el numero', 0, 1, 14);
+
+     DibujarPal('Nro ' + intToStr(cont),1,1,0,'AsciiArtFont03');
+     DibujarPal('Visualice el numero',1,12,0,'AsciiArtFont03');
+     TemporVisual:='##################################################';
+     GotoXY (22,23);
+     Write ('          __________________________________________________');
+     GotoXY (22,24);
+     Write ('         /                                                  \');
+     GotoXY (22,25);
+     Write ('TIEMPO: ( ',TemporVisual);
+     GotoXY (22,26);
+     Write ('         \__________________________________________________/');
+
 
      aleat:= GenNum();
      Dibujando(aleat, 0, 30, 30);
@@ -60,15 +71,45 @@ begin
           End;
      End;
   
-     Delay(tiempo); {Espera de 5 seg para memorizar el numero}
+      {Espera de 5 seg para memorizar el numero}
+
+     Repeat
+     Begin
+           Delay (tiempo DIV 50);
+           GotoXY (22,25);
+           Delete (TemporVisual, length(TemporVisual),1);
+           clrEol;
+           Write ('TIEMPO: ( ',TemporVisual);
+     end
+     until length(TemporVisual) = 0;
 
      salir:= True;
      vida:= 3;
      While salir Do
      Begin
           clrscr;
+          GotoXY (10,12);
+          Write ('Intentos:');
+          For i:=1 to vida do
+                    Begin
+                         GotoXY (22+ (15*i) ,10);
+                         Write ('  oo   oo  ');
+                         GotoXY (22+ (15*i) ,11);
+                         Write ('ooooooooooo');
+                         GotoXY (22+ (15*i) ,12);
+                         Write (' ooooooooo ');
+                         GotoXY (22+ (15*i) ,13);
+                         Write ('   ooooo  ');
+                         GotoXY (22+ (15*i) ,14);
+                         Write ('     o  ');
+                    end;
+          DibujarPal('Adivina',33,17,1,'AsciiArtFont03');
+          GotoXY (10,33);
+          Write ('Numero desordenado:');
           Dibujando(desorden, 0, 30, 30);
-          GoToXY(30, 50);
+          GotoXY (10,50);
+          Write ('Ingresa el numero original:');
+          GoToXY(40, 50);
           Readln(numIngresado);
           If vida > 1 Then
           Begin
@@ -76,6 +117,8 @@ begin
                Begin
                     salir:= False;
                     cont:= cont + 1;
+                    GotoXY (55,50);
+                    Write ('Acertaste!');
                     Case vida of
                          3: puntaje:= puntaje + 100;
                          2: puntaje:= puntaje + 50;
@@ -86,7 +129,21 @@ begin
                Begin
                     ClrScr;
                     vida:= vida - 1;
-                    Dibujando('Te queda ' + intToStr(vida) + ' vidas', 0, 1, 20);
+                    DibujarPal('Te queda ' + intToStr(vida) + ' vidas',1,20,0,'AsciiArtFont01');
+                    For i:=1 to vida do
+                    Begin
+                         GotoXY (30+ (15*i) ,30);
+                         Write ('  oo   oo  ');
+                         GotoXY (30+ (15*i) ,31);
+                         Write ('ooooooooooo');
+                         GotoXY (30+ (15*i) ,32);
+                         Write (' ooooooooo ');
+                         GotoXY (30+ (15*i) ,33);
+                         Write ('   ooooo  ');
+                         GotoXY (30+ (15*i) ,34);
+                         Write ('     o  ');
+                    end;
+
                     Delay(2000);
                End;
           End
@@ -102,12 +159,44 @@ begin
                   tiempo:= tiempo - 500;
           End;
      End;
+     delay (1500);
      ClrScr;
 
      End;
+     GotoXY (20,20);
      Writeln('Ingrese nombre');
+     GotoXY (22,22);
      Readln (nombre);
-     Writeln(puntaje);
+     GotoXY (20,26);
+     Writeln('Tu puntaje');
+     Delay (1000);
+     DibujarPal(intToStr(puntaje),22,28,0,'AsciiArtFont04');
+     Delay (1000);
+     GotoXY (20,35);
+     Write ('Multiplicador por nivel:');
+     Delay (1000);
+     DibujarPal('x'+intToStr(cont),22,37,0,'AsciiArtFont04');
+     resgPuntaje:= puntaje;
+     puntaje:= 0;
+     For i:=1 to resgPuntaje do
+     Begin
+          GotoXY (22,45);
+          clrEol;
+          GotoXY (22,46);
+          clrEol;
+          GotoXY (22,47);
+          clrEol;
+          GotoXY (22,48);
+          clrEol;
+          GotoXY (22,49);
+          clrEol;
+          puntaje:= puntaje + 1;
+          DibujarPal(intToStr(puntaje),22,45,0,'AsciiArtFont04');
+          Delay (10);
+     end;
+
+
+
      GuardarPuntaje(puntaje,nombre);
 
 
