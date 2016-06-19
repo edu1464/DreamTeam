@@ -206,17 +206,16 @@ procedure creditos;
       textcolor(letra);
       textbackground(fondo);
       repeat
-      gotoxy(26,1);write(' -----CREDITOS----- ');
-       gotoxy(26,8);write(' Made By  ');
-       gotoxy(26,9);write(' DREAM TEAM :  ');
-      gotoxy(26,12);write(' Eduardo Garcia  ');
-      gotoxy(26,14);write(' Francisco Sabbatella  ');
-      gotoxy(26,16);write(' Emanuel Ruidiaz  ');
-      gotoxy(26,18);write(' Facundo Uriarte');
-      gotoxy(26,20);write(' Gracias por jugar :) ');
+            gotoxy(55,11);write(' -----CREDITOS----- ');
+            gotoxy(55,18);write(' Desarrollado por  ');
+            gotoxy(55,19);write(' DREAM TEAM :  ');
+            gotoxy(55,22);write(' Eduardo Garcia  ');
+            gotoxy(55,24);write(' Francisco Sabbatella  ');
+            gotoxy(55,26);write(' Emanuel Ruidiaz  ');
+            gotoxy(55,28);write(' Facundo Uriarte');
+            gotoxy(55,32);write(' Gracias por jugar :) ');
       
-       gotoxy(26,20);write(' Proximamente disponible en Xbox One) ');
-      delay(120);
+      delay(500);
       fondo := fondo - 1;
       if fondo = -1 then
       fondo := 15;
