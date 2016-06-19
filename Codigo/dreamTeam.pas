@@ -10,6 +10,7 @@ Function NumeroDesordenado(num: string):string;
 Procedure titulo;
 procedure creditos;
 Procedure Dibujando(frase: string; d: integer; x: integer; y: integer);
+Procedure DibujarPal(palabra: string; x,y,espaciado: integer; fuente: string);
 
 Implementation
 
@@ -75,9 +76,11 @@ Var
    row: string;
    SecNum: Text;
    flag: Boolean;
+   Dir: string;
 
 Begin
-     Assign(SecNum, 'D:\Eduardo\UTN FRRe\Algoritmos\2016\Repo TPI Pascal 2\Codigo\AsciiArtNumero.txt');
+     GetDir(0,Dir);
+     Assign(SecNum, '\AsciiArtNumero.txt');
      Reset(SecNum);
      sal1:= '';
      flag:= true;
@@ -244,6 +247,45 @@ Begin
               GoToXY(x,y+j);
               Writeln(sal);
          End;
+End;
+
+Procedure DibujarPal(palabra: string; x,y,espaciado: integer; fuente: string);
+
+Var
+   Sec: Text;
+   Vsec: String;
+   Vpal: ShortString;
+   DirLocal: String;
+   i,xLong,yLong: Integer;
+   a: integer;
+
+Begin
+     getDir(0,DirLocal);
+     Assign(Sec, (DirLocal + '\' + fuente + '.txt'));
+     xLong:=0;
+     For i:=1 to length(palabra) do
+     Begin
+          Reset(Sec);
+          Readln(Sec,Vsec);
+
+          Vpal:= Copy (palabra,i,1);
+          While not Eof(Sec) and ( Copy(Vsec,1,1)<>Vpal ) do
+          Begin
+               Readln(Sec,Vsec);
+
+          end;
+          xLong:= length(Vsec)-1;
+          yLong:= 0;
+          While not Eof(Sec) and ( Copy(Vsec,1,1)= Vpal ) do
+          Begin
+               GotoXY ( x , y + yLong );
+               Writeln ( Copy(Vsec,2,xLong) );
+               yLong:= yLong + 1;
+               Readln (Sec,Vsec);
+          end;
+          Close (Sec);
+          x:= x + xLong + espaciado;
+     end;
 End;
 
 End.
