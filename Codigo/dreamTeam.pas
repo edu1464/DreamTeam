@@ -9,6 +9,7 @@ Function DibujarNum(digit: char; fila: integer):string;
 Function NumeroDesordenado(num: string):string;
 Procedure titulo;
 procedure creditos;
+Procedure Dibujando(frase: string; d: integer; x: integer; y: integer);
 
 Implementation
 
@@ -226,6 +227,24 @@ procedure creditos;
       clrscr;
       
 end;
+
+Procedure Dibujando(frase:string; d: integer; x: integer; y: integer);  {frase: palabra a dibujar, d: valor de delay, x: posicion x en la pantalla, y: posicion y en la pantalla}
+Var
+   sal: string;
+
+Begin
+     For j:= 1 to 9 Do  {Bucle de cantidad de filas de la letra}
+         Begin
+              sal:= '';
+              For i:= 1 to length(frase) Do {Bucle cantidad de digitos del numero}
+              Begin
+                   Delay(d);
+                   sal:= sal + DibujarNum(frase[i], j);
+              End;
+              GoToXY(x,y+j);
+              Writeln(sal);
+         End;
+End;
 
 End.
 
