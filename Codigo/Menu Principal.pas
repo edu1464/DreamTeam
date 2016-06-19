@@ -338,6 +338,7 @@ procedure creditos;
       textbackground(0);
       clrscr;
       control:= false;
+      readkey;
       
 end;
 
