@@ -1,0 +1,12 @@
+Se te presentara un numero de 6 digitos,
+tendras que memorizarlo, luego desaparecera.
+
+De forma desordenada se te mostrara el numero
+nuevamente, tienes que escribirlo de forma
+ordenada.
+
+Con un maximo de 3 intentos por numero iras
+acumulando puntos si aciertas, y cada nivel
+te dara un multiplicador de puntaje.
+
+              Diviertete!
