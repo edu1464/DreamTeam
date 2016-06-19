@@ -5,9 +5,9 @@ Uses
 
 Var
    sal, resgPos, frase: string;
-   aleat, desorden: string;
-   j,i, pos: integer;
-   flag1, flag2: Boolean;
+   aleat, desorden, numIngresado: string;
+   j,i, pos, cont: integer;
+   flag1, flag2, salir: Boolean;
 
 begin
 
@@ -16,6 +16,7 @@ begin
      aleat:= GenNum();
      Dibujando(aleat, 0, 30, 30);
 
+     {Desorden del numero}
      Randomize;
      desorden:= '';
      resgPos:='000000';
@@ -51,22 +52,37 @@ begin
           End;
      End;
   
-     Delay(5000);
+     Delay(5000); {Espera de 5 seg para memorizar el numero}
 
-     clrscr;
-     For j:= 1 to 8 Do  {Bucle de cantidad de filas de la letra}
+     salir:= True;
+     cont:= 3;
+     While salir Do
      Begin
-          sal:= '';
-          For i:= 1 to length(desorden) Do {Bucle cantidad de digitos del numero}
+          clrscr;
+          Dibujando(desorden, 0, 30, 30);
+          GoToXY(30, 50);
+          Readln(numIngresado);
+          If cont > 1 Then
           Begin
-               Delay(50);
-               sal:= sal + DibujarNum(desorden[i], j) + ' ';
+               If numIngresado = aleat Then
+               Begin
+                    salir:= False;
+               End
+               Else
+               Begin
+                    ClrScr;
+                    cont:= cont - 1;
+                    Dibujando('Te queda ' + intToStr(cont) + ' vidas', 0, 1, 20);
+                    Delay(2000);
+               End;
+          End
+          Else
+          Begin
+               ClrScr;
+               Dibujando('PERDISTE', 20, 20, 20);
+               salir:= False;
           End;
-          GoToXY(20,15+j);
-          Writeln(sal);
      End;
-
-
      ReadKey;
 
 end.
