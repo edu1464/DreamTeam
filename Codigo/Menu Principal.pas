@@ -1,7 +1,7 @@
 Program MenuPrincipal;
 
 Uses
-    crt, dreamTeam  ;
+    crt, dreamTeam, dos  ;
 
 var
 
@@ -31,10 +31,12 @@ end;
 
 Procedure jugar;          {cuando se elije 'Jugar' de las opciones}
 Begin
-     gotoXY (55,38);
-     Write ('Listo? JUGUEMOS ENTONCES!');
-     delay (2000);
-     clrScr;
+    // gotoXY (55,38);
+     ClrScr;
+     Exec('D:\Eduardo\UTN FRRe\Algoritmos\2016\Repo TPI Pascal 2\Codigo\Game.exe', '');
+   //  Write ('Listo? JUGUEMOS ENTONCES!');
+    // delay (2000);
+    // clrScr;
 end;
 
 Procedure comoJugar;
