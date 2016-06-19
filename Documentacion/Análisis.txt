@@ -1,2 +1,3 @@
-Primera pantalla: Configuración, y un readkey para continuar.
-Inicio: Nombre del juego, y mostrar opciones de menú: Jugar, Cómo jugar, Puntuaciones máximas, Créditos.
+Primera pantalla: ConfiguraciÃ³n, y un readkey para continuar.
+Inicio: Nombre del juego, y mostrar opciones de menÃº: Jugar, CÃ³mo jugar, Puntuaciones mÃ¡ximas, CrÃ©ditos.
+Antes de inicar el juego, el jugador debe configurar el tamaÃ±o de la pantalla.
