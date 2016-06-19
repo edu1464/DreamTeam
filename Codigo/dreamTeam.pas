@@ -80,7 +80,7 @@ Var
 
 Begin
      GetDir(0,Dir);
-     Assign(SecNum, '\AsciiArtNumero.txt');
+     Assign(SecNum, Dir + '\AsciiArtNumero.txt');
      Reset(SecNum);
      sal1:= '';
      flag:= true;
