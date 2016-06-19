@@ -163,37 +163,47 @@ begin
      ClrScr;
 
      End;
-     GotoXY (20,20);
+     GotoXY (20,10);
      Writeln('Ingrese nombre');
-     GotoXY (22,22);
+     GotoXY (22,12);
      Readln (nombre);
-     GotoXY (20,26);
+     GotoXY (20,20);
      Writeln('Tu puntaje');
      Delay (1000);
-     DibujarPal(intToStr(puntaje),22,28,0,'AsciiArtFont04');
+     DibujarPal(intToStr(puntaje),22,22,0,'AsciiArtFont04');
      Delay (1000);
-     GotoXY (20,35);
+     GotoXY (20,30);
      Write ('Multiplicador por nivel:');
      Delay (1000);
-     DibujarPal('x'+intToStr(cont),22,37,0,'AsciiArtFont04');
+     DibujarPal('x'+intToStr(cont-1),22,32,0,'AsciiArtFont04');
+     GotoXY (20,40);
+     Delay (1000);
+     Write ('TOTAL:');
+     Delay (1000);
      resgPuntaje:= puntaje;
-     puntaje:= 0;
-     For i:=1 to resgPuntaje do
+     puntaje:=0;
+     if cont>1 then
      Begin
-          GotoXY (22,45);
-          clrEol;
-          GotoXY (22,46);
-          clrEol;
-          GotoXY (22,47);
-          clrEol;
-          GotoXY (22,48);
-          clrEol;
-          GotoXY (22,49);
-          clrEol;
-          puntaje:= puntaje + 1;
-          DibujarPal(intToStr(puntaje),22,45,0,'AsciiArtFont04');
-          Delay (10);
-     end;
+          For i:=1 to (resgPuntaje*(cont-1)) do
+          Begin
+               GotoXY (22,42);
+               clrEol;
+               GotoXY (22,43);
+               clrEol;
+               GotoXY (22,44);
+               clrEol;
+               GotoXY (22,45);
+               clrEol;
+               GotoXY (22,46);
+               clrEol;
+               puntaje:= puntaje + 1;
+               DibujarPal(intToStr(puntaje),22,42,0,'AsciiArtFont04');
+               Delay (10);
+          end;
+     end
+     else
+     DibujarPal(intToStr(puntaje),22,42,0,'AsciiArtFont04');
+
 
 
 
