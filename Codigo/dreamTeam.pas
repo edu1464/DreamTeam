@@ -11,6 +11,7 @@ Procedure titulo;
 procedure creditos;
 Procedure Dibujando(frase: string; d: integer; x: integer; y: integer);
 Procedure DibujarPal(palabra: string; x,y,espaciado: integer; fuente: string);
+Procedure GuardarPuntaje (puntos: integer; nombre: string);
 
 Implementation
 
@@ -234,7 +235,6 @@ end;
 Procedure Dibujando(frase:string; d: integer; x: integer; y: integer);  {frase: palabra a dibujar, d: valor de delay, x: posicion x en la pantalla, y: posicion y en la pantalla}
 Var
    sal: string;
-
 Begin
      For j:= 1 to 9 Do  {Bucle de cantidad de filas de la letra}
          Begin
@@ -250,7 +250,6 @@ Begin
 End;
 
 Procedure DibujarPal(palabra: string; x,y,espaciado: integer; fuente: string);
-
 Var
    Sec: Text;
    Vsec: String;
@@ -258,7 +257,6 @@ Var
    DirLocal: String;
    i,xLong,yLong: Integer;
    a: integer;
-
 Begin
      getDir(0,DirLocal);
      Assign(Sec, (DirLocal + '\' + fuente + '.txt'));
@@ -287,6 +285,46 @@ Begin
           x:= x + xLong + espaciado;
      end;
 End;
+
+Procedure GuardarPuntaje (puntos: integer; nombre: string);
+type
+    Puntaje = Record
+              puesto: integer;
+              nombre: string;
+              puntaje: integer;
+    end;
+var
+   Puntajes: File of Puntaje;
+   Punt,PuntS: Puntaje;
+   Dir, resguardoNombre: string;
+   i, resguardoPuntos, resguardoPuesto: Integer;
+Begin
+     GetDir(0,Dir);
+     Assign (Puntajes,Dir+'\Puntajes.txt');
+     Reset (Puntajes);
+     While not Eof(Puntajes) do
+     Begin
+          Read (Puntajes,Punt);
+          if (puntos >= Punt.puntaje) then
+          Begin
+               resguardoPuntos:= Punt.puntaje;
+               resguardoNombre:= Punt.nombre;
+               resguardoPuesto:= Punt.puesto;
+               Reset (Puntajes);
+               if (resguardoPuesto > 1) then
+               For i:=2 to resguardoPuesto do Read(Puntajes,Punt);
+               PuntS.puntaje:= puntos;
+               PuntS.nombre:= nombre;
+               PuntS.puesto:= resguardoPuesto;
+               Write (Puntajes,PuntS);
+               puntos:= resguardoPuntos;
+               nombre:= resguardoNombre;
+          end;
+     end;
+     Close(Puntajes);
+end;
+
+
 
 End.
 

@@ -9,6 +9,7 @@ Var
    j,i, pos, vida, cont, puntaje: integer;
    flag1, flag2, salir, fin: Boolean;
    tiempo: integer;
+   nombre: string;
 
 begin
      fin:= True;
@@ -104,7 +105,13 @@ begin
      ClrScr;
 
      End;
+     Writeln('Ingrese nombre');
+     Readln (nombre);
      Writeln(puntaje);
+     GuardarPuntaje(puntaje,nombre);
+
+
+
      ReadKey;
 
 end.
