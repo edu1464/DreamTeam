@@ -6,11 +6,18 @@ Uses
 Var
    sal, resgPos, frase: string;
    aleat, desorden, numIngresado: string;
-   j,i, pos, cont: integer;
-   flag1, flag2, salir: Boolean;
+   j,i, pos, vida, cont, puntaje: integer;
+   flag1, flag2, salir, fin: Boolean;
+   tiempo: integer;
 
 begin
-
+     fin:= True;
+     cont:= 1;
+     puntaje:= 0;
+     tiempo:= 5000;
+     While fin Do
+     Begin
+     Dibujando('Nro ' + intToStr(cont), 0, 1, 1);
      Dibujando('Visualice el numero', 0, 1, 14);
 
      aleat:= GenNum();
@@ -52,27 +59,33 @@ begin
           End;
      End;
   
-     Delay(5000); {Espera de 5 seg para memorizar el numero}
+     Delay(tiempo); {Espera de 5 seg para memorizar el numero}
 
      salir:= True;
-     cont:= 3;
+     vida:= 3;
      While salir Do
      Begin
           clrscr;
           Dibujando(desorden, 0, 30, 30);
           GoToXY(30, 50);
           Readln(numIngresado);
-          If cont > 1 Then
+          If vida > 1 Then
           Begin
                If numIngresado = aleat Then
                Begin
                     salir:= False;
+                    cont:= cont + 1;
+                    Case vida of
+                         3: puntaje:= puntaje + 100;
+                         2: puntaje:= puntaje + 50;
+                         1: puntaje:= puntaje + 25;
+                    End;
                End
                Else
                Begin
                     ClrScr;
-                    cont:= cont - 1;
-                    Dibujando('Te queda ' + intToStr(cont) + ' vidas', 0, 1, 20);
+                    vida:= vida - 1;
+                    Dibujando('Te queda ' + intToStr(vida) + ' vidas', 0, 1, 20);
                     Delay(2000);
                End;
           End
@@ -81,8 +94,17 @@ begin
                ClrScr;
                Dibujando('PERDISTE', 20, 20, 20);
                salir:= False;
+               fin:= False;
+          End;
+          if (cont mod 3) = 0 Then
+             Begin
+                  tiempo:= tiempo - 500;
           End;
      End;
+     ClrScr;
+
+     End;
+     Writeln(puntaje);
      ReadKey;
 
 end.
