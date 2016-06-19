@@ -267,6 +267,7 @@ Begin
      GotoXY (58,y+3);
      Write ('Presione cualquier tecla para volver');
      ReadKey;
+     Close (ComoJugar);
      control:=false;
      ClrScr;
 end;
@@ -299,6 +300,7 @@ Begin
      GotoXY (30, y);
      Write ('Presione cualquier tecla para volver');
      ReadKey;
+     Close (Puntajes);
      ClrScr;
      control:= false;
 end;
