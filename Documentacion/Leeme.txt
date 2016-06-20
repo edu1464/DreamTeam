@@ -1,0 +1,15 @@
+Importante!!
+
+Pasos para jugar:
+1) Ejecutar Menu Principal.exe
+2) Hacer clic derecho sobre en la parte superior de la ventana
+3) Seleccionar Propiedades en el menú contextual
+4) Seleccionar la pestaña Diseño
+5) Ajustar el "Tamaño de la ventana" con valores ancho = 170 y alto = 60
+6) Aceptar los cambios
+7) Ejecutar Menu Principal.exe nuevamente
+8) Divertirse!!
+
+Pueden visitar el repositorio en https://github.com/edu1464/DreamTeam
+
+Muchas Gracias!!
